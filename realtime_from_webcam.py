@@ -44,12 +44,12 @@ def get_image_with_bboxes(frame):
         assert len(box) == 6, "box should contain class pred, confidence, x, y, width, height"
         class_pred = box[0]
         box = box[2:]
-        upper_left_x = int((box[0] - box[2] / 2) * w)
-        upper_left_y = int((box[1] - box[3] / 2) * h)
-        rect_width = box[2] * w
-        rect_height = box[3] * h
+        upper_left_x = int((box[0] - box[2] / 2) * h)
+        upper_left_y = int((box[1] - box[3] / 2) * w)
+        rect_width = box[2] * h
+        rect_height = box[3] * w
         s=OBJ[int(class_pred)]
-        image = cv2.rectangle(frame, (upper_left_x, upper_left_y), (int(upper_left_x + rect_width), int(upper_left_y + rect_height)), (255,0,0), 4)
+        image = cv2.rectangle(frame, (upper_left_x, upper_left_y), (int(upper_left_x + rect_height), int(upper_left_y + rect_width)), (255,0,0), 4)
         image = cv2.putText(image, s, (upper_left_x, upper_left_y)
         , cv2.FONT_HERSHEY_PLAIN, 1, (255,0,0), 2, cv2.LINE_AA)
         return image
